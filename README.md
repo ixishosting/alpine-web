@@ -1,4 +1,4 @@
-# Alpine Web]
+# Alpine Web
 
 A Docker image for running Apache and PHP on Alpine Linux.
 
