@@ -9,6 +9,7 @@ sed -i 's#^DocumentRoot ".*#DocumentRoot "/app"#g' /etc/apache2/httpd.conf && \
 sed -i 's#AllowOverride none#AllowOverride All#' /etc/apache2/httpd.conf && \
 sed -i 's#/var/www/localhost/htdocs#/app#' /etc/apache2/httpd.conf && \
 sed -i 's/#LoadModule rewrite_module modules\/mod_rewrite.so/LoadModule rewrite_module modules\/mod_rewrite.so/g' /etc/apache2/httpd.conf && \
+sed -i '/Require all granted/aRewriteEngine on' /etc/apache2/httpd.conf && \
 
 mkdir /run/apache2 && \
 echo "Success"
