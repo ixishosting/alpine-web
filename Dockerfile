@@ -15,7 +15,6 @@ RUN chmod 755 /start.sh
 
 EXPOSE 80
 
-# VOLUME /app
 WORKDIR /app
 
 ENTRYPOINT ["/bin/sh", "/start.sh"]

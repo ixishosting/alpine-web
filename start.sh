@@ -3,9 +3,6 @@
 # clone git repo and branch from environmental variables
 git clone -b ${GIT_BRANCH} ${GIT_URL} /app
 
-# setup symlink for assets
-mkdir -p /app/sites/default/
-
 if [ ! -d "/app/sites/default/files" ]
 then
     ln -s /assets /app/sites/default/files
