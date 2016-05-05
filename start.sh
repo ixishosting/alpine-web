@@ -19,4 +19,4 @@ rm /app/docker-compose.yml rancher-compose.yml .drone.yml
 chown -Rf apache:apache /assets
 
 # start apache server in foreground mode
-/usr/sbin/httpd -DFOREGROUND
+#/usr/sbin/httpd -DFOREGROUND
