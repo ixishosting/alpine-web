@@ -1,5 +1,11 @@
 #!/bin/sh
 
+# clean app diretory to ensure clean start
+if [ -d "/app" ]
+then
+    rm -rf /app
+fi
+
 # clone git repo and branch from environmental variables
 git clone -b ${GIT_BRANCH} ${GIT_URL} /app
 
