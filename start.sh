@@ -1,22 +1,23 @@
 #!/bin/sh
 
-# clean app diretory to ensure clean start
-if [ -d "/app" ]
-then
-    rm -rf /app
-fi
+# grab latest code for project, extract and sym-link to app directory
 
-# clone git repo and branch from environmental variables
-git clone -b ${GIT_BRANCH} ${GIT_URL} /app
+cd /tmp/
+curl https://s3-$AWS_REGION.amazonaws.com/$S3_URL > webapp.tar.gz
+tar xzf webapp.tar.gz
+rm webapp.tar.gz
+ln -s /tmp/webapp /app
+chown -Rf apache:apache /app/
+
+# setup assets symlink
 
 if [ ! -d "/app/sites/default/files" ]
 then
     ln -s /assets /app/sites/default/files
 fi
 
-rm /app/docker-compose.yml rancher-compose.yml .drone.yml
-
 chown -Rf apache:apache /assets
+chown -Rf apache:apache /app/sites/default/files
 
 # start apache server in foreground mode
-#/usr/sbin/httpd -DFOREGROUND
+/usr/sbin/httpd -DFOREGROUND

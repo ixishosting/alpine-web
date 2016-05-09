@@ -4,7 +4,6 @@ RUN apk-install php-apache2 curl php-cli php-json php-phar php-openssl php-ctype
 curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
 wget -O /usr/local/bin/drush http://files.drush.org/drush.phar && \
 chmod +x /usr/local/bin/drush && \
-mkdir /app && chown -R apache:apache /app && \
 mkdir /run/apache2 && \
 echo "Success"
 
@@ -14,7 +13,5 @@ ADD ./start.sh /start.sh
 RUN chmod 755 /start.sh
 
 EXPOSE 80
-
-WORKDIR /app
 
 ENTRYPOINT ["/bin/sh", "/start.sh"]
