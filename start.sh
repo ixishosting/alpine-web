@@ -3,7 +3,7 @@
 # grab latest code for project, extract and sym-link to app directory
 
 cd /tmp/
-curl https://s3-$AWS_REGION.amazonaws.com/$S3_URL > webapp.tar.gz
+curl -silent https://s3-$AWS_REGION.amazonaws.com/$S3_URL > webapp.tar.gz
 tar xzf webapp.tar.gz
 rm webapp.tar.gz
 ln -s /tmp/webapp /app
