@@ -1,6 +1,6 @@
 FROM gliderlabs/alpine:3.3
 
-RUN apk-install php-apache2 curl php-cli php-json php-phar php-openssl php-ctype php-pdo_mysql php-gd php-xml php-pdo php-dom php-mysql php-opcache git openssh mysql-client rsync && \
+RUN apk-install php-apache2 curl php-cli php-json php-phar php-openssl php-ctype php-pdo_mysql php-gd php-xml php-pdo php-dom php-mysql php-opcache git openssh mysql-client rsync bash && \
 curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
 wget -O /usr/local/bin/drush http://files.drush.org/drush.phar && \
 chmod +x /usr/local/bin/drush && \
@@ -14,4 +14,4 @@ RUN chmod 755 /start.sh
 
 EXPOSE 80
 
-ENTRYPOINT ["/bin/sh", "/start.sh"]
+ENTRYPOINT ["/bin/bash", "/start.sh"]
