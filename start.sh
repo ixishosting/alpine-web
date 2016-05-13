@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # grab latest code for project, extract and sym-link to app directory
 
