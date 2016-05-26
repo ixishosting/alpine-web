@@ -17,6 +17,9 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
     wget -O /usr/local/bin/drush http://files.drush.org/drush.phar && \
     chmod +x /usr/local/bin/drush
 
+### install mysql-client ###
+RUN apk-install mysql-client
+
 ### install ansible ###
 RUN apk add ansible --update-cache --repository http://dl-3.alpinelinux.org/alpine/edge/main/ --allow-untrusted
 
