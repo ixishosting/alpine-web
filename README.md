@@ -15,6 +15,8 @@ This image obtains application code from Amazon S3 and unpacks to `/webapp`.
 
 *need to add information for this*
 
+Image checks for the existence of `.container.yml` in the document_root.  If found processes the cron jobs and commands defined within.
+
 ## Variables
 
 `$AWS_REGION` Define the AWS region your application code is stored in at S3.
