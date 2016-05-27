@@ -27,5 +27,9 @@ then
 
 fi
 
+### start crond daemon ###
+
+crond -l 2
+
 ### start apache2 ###
 bash -c 'exec /usr/sbin/httpd -DFOREGROUND'
