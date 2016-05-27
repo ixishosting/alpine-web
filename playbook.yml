@@ -1,0 +1,29 @@
+---
+
+- hosts: localhost
+
+  tasks:
+
+  - include_vars: /webapp/.container.yml
+
+  ### setup cron jobs ###
+  - name: setup cron jobs
+    cron:
+      name={{ item.key }}
+      minute={{ item.value.minute }}
+      hour={{ item.value.hour }}
+      day={{ item.value.day }}
+      month={{ item.value.month }}
+      weekday={{ item.value.weekday }}
+      job={{ item.value.command }}
+    with_dict: "{{ cron_jobs }}"
+    when: cron_jobs is defined
+
+  ### execute post-dpeloyment commands ###
+  - name: execute deployment commands
+    shell: "{{ item.value.command }}"
+    args:
+      executable: /bin/bash
+      chdir: "{{ item.value.directory }}"
+    with_dict: "{{ deployment_commands }}"
+    when: deployment_commands is defined

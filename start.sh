@@ -15,20 +15,19 @@ ln -s /assets /webapp/sites/default/files
 chown -Rf apache:apache /assets
 chown -Rf apache:apache /webapp/sites/default/files
 
-### check if project config file exists ###
-if [ -f "/webapp/.project.yml" ];
+### check if container config file exists ###
+if [ -f "/webapp/.container.yml" ];
 then
 
   ### run ansible playbook ###
-  ansible-playbook /webapp/.project.yml  --connection=localhost
+  ansible-playbook /playbook.yml  --connection=localhost
 
   ### remove ansible playbook when complete ###
-  rm /webapp/.project.yml
+  rm /webapp/.container.yml
 
 fi
 
 ### start crond daemon ###
-
 crond -l 2
 
 ### start apache2 ###

@@ -26,6 +26,9 @@ RUN apk add ansible --update-cache --repository http://dl-3.alpinelinux.org/alpi
 ### add start script ###
 COPY start.sh /start.sh
 
+### add ansible configuration playbook ###
+COPY playbook.yml /playbook.yml
+
 ### expore port 80 ###
 EXPOSE 80
 
