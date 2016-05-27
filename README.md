@@ -1,10 +1,22 @@
-# Alpine Web
+# Ixis Alpine Web
 
-A Docker image for running Apache and PHP on Alpine Linux.
+A highly opinionated alpine (3.3) based docker image for use with the Ixis container stack.
 
-This image is tailored for running Drupal and assumes your code is stored in git.  On launch the image will pull down the code into /app/ and assets will be stored in /assets/
+This image obtains application code from Amazon S3 and unpacks to `/webapp`.
+
+## Included Packages
+
+* Apache 2
+* PHP 5
+* Drush 8
+* Ansible 2
+
+## Ansible playbooks
+
+*need to add information for this*
 
 ## Variables
 
-    GIT_BRANCH=name-of-branch
-    GIT_URL=https://username:password@address-of-git-repo.git
+`$AWS_REGION` Define the AWS region your application code is stored in at S3.
+
+`$S3_URL` Define the url your application is stored in at S3 e.g. `my-bucket/application.tar.gz`.
