@@ -1,10 +1,10 @@
 FROM gliderlabs/alpine:3.3
 
 ### install base components ###
-RUN apk-install curl bash
+RUN apk-install --no-cache curl bash
 
 ### install apache2, php5 and mysql-client ###
-RUN  apk-install apache2 php-apache2 php-cli php-json php-phar php-openssl php-ctype php-pdo_mysql php-gd php-xml php-pdo php-dom php-mysql php-opcache
+RUN  apk-install --no-cache apache2 php-apache2 php-cli php-json php-phar php-openssl php-ctype php-pdo_mysql php-gd php-xml php-pdo php-dom php-mysql php-opcache
 
 ### create directories needed for apache ###
 RUN mkdir -p /run/apache2
@@ -18,10 +18,10 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
     chmod +x /usr/local/bin/drush
 
 ### install mysql-client ###
-RUN apk-install mysql-client
+RUN apk-install --no-cache mysql-client
 
 ### install ansible ###
-RUN apk add ansible --update-cache --repository http://dl-3.alpinelinux.org/alpine/edge/main/ --allow-untrusted
+RUN apk add --no-cache ansible --repository http://dl-3.alpinelinux.org/alpine/edge/main/ --allow-untrusted
 
 ### add start script ###
 COPY start.sh /start.sh
