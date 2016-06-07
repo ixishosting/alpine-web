@@ -4,6 +4,24 @@
 # script executed when container starts.  Performs configuration and setup of project.
 ###
 
+
+### amend mysql passwords if branch != master ###
+if [ $BRANCH != "master" ];
+then
+
+  ### reset root mysql password
+  mysql -u root -p$DB_ROOT_PARENT_PW -h $MYSQL_HOST -e "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('$MYSQL_ROOT_PASSWORD');"
+  ### reset mysql password ###
+  mysql -u root -p$MYSQL_ROOT_PASSWORD -h $MYSQL_HOST -e "SET PASSWORD FOR '$MYSQL_USER'@'localhost' = PASSWORD('$MYSQL_PASSWORD');"
+
+fi
+
+### blank out parent mysql password ###
+export PARENT_MYSQL_PASSWORD="****"
+
+### blank out parent mysql password ###
+export MYSQL_ROOT_PASSWORD="****"
+
 ### grab latest code for the project and setup ###
 wget -O /tmp/webapp.tar.gz https://s3-$AWS_REGION.amazonaws.com/$S3_URL
 tar -xzf /tmp/webapp.tar.gz
