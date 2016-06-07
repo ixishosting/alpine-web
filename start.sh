@@ -4,6 +4,8 @@
 # script executed when container starts.  Performs configuration and setup of project.
 ###
 
+printenv
+
 
 ### amend mysql passwords if branch != master ###
 if [ "$BRANCH" != "master" ];
