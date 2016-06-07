@@ -12,9 +12,11 @@ then
   echo "old password is $DB_ROOT_PARENT_PW"
 
   ### reset root mysql password
-  mysql -u root -p$DB_ROOT_PARENT_PW -h $MYSQL_HOST -e "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('$MYSQL_ROOT_PASSWORD');"
+  mysql -u root -p$DB_ROOT_PARENT_PW -h $MYSQL_HOST -e "UPDATE mysql.USER SET Password=PASSWORD('$MYSQL_ROOT_PASSWORD') WHERE USER='root' AND Host='localhost';"
+
+
   ### reset mysql password ###
-  mysql -u root -p$MYSQL_ROOT_PASSWORD -h $MYSQL_HOST -e "SET PASSWORD FOR '$MYSQL_USER'@'localhost' = PASSWORD('$MYSQL_PASSWORD');"
+  mysql -u root -p$MYSQL_ROOT_PASSWORD -h $MYSQL_HOST -e "UPDATE mysql.USER SET Password=PASSWORD('$MYSQL_PASSWORD') WHERE USER='$MYSQL_USER' AND Host='localhost';"
 
 fi
 
