@@ -14,8 +14,7 @@ then
   echo "old password is $DB_ROOT_PARENT_PW"
 
   ### reset root mysql password
-  #mysql -u root -p$DB_ROOT_PARENT_PW -h $MYSQL_HOST -e "update mysql.user set authentication_string=PASSWORD('$MYSQL_ROOT_PASSWORD') where user='root' limit 1;"
-
+  mysql -u root -p$DB_ROOT_PARENT_PW -h $MYSQL_HOST -e 'update mysql.user set authentication_string=PASSWORD("$MYSQL_ROOT_PASSWORD") where user="root" limit 1;flush privileges;'
 
   ### reset mysql password ###
   #mysql -u root -p$MYSQL_ROOT_PASSWORD -h $MYSQL_HOST -e "update mysql.user set authenticationstring=PASSWORD('MYSQL_PASSWORD') where user='$MYSQL_USER' limit 1;');"
