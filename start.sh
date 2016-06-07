@@ -6,8 +6,10 @@
 
 
 ### amend mysql passwords if branch != master ###
-if [ $BRANCH != "master" ];
+if [ "$BRANCH" != "master" ];
 then
+
+  echo "old password is $DB_ROOT_PARENT_PW"
 
   ### reset root mysql password
   mysql -u root -p$DB_ROOT_PARENT_PW -h $MYSQL_HOST -e "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('$MYSQL_ROOT_PASSWORD');"
