@@ -16,7 +16,6 @@ then
   ### reset root mysql password
   mysql -u root -p$DB_ROOT_PARENT_PW -h $MYSQL_HOST -e "ALTER USER 'root'@'%' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD';"
 
-
   ### reset mysql password ###
   mysql -u root -p$MYSQL_ROOT_PASSWORD -h $MYSQL_HOST -e "ALTER USER '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';"
 
