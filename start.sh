@@ -4,12 +4,12 @@
 # script executed when container starts.  Performs configuration and setup of project.
 ###
 
-printenv
-
-
 ### amend mysql passwords if branch != master and this is a new commit/branch ###
 if [ "$BRANCH" != "master" ] && [ "$IS_NEW" == "true" ];
 then
+
+  ### sleep to allow mysql to fully start ###
+  sleep 5
 
   echo "old password is $DB_ROOT_PARENT_PW"
 
