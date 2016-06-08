@@ -8,7 +8,7 @@ printenv
 
 
 ### amend mysql passwords if branch != master and this is a new commit/branch ###
-if [ "$BRANCH" != "master" ] && [ "$IS_NEW" == "true" ];
+if [ "$BRANCH" != "master" ]; && [ "$IS_NEW" == "true" ];
 then
 
   echo "old password is $DB_ROOT_PARENT_PW"
