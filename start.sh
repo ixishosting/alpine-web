@@ -54,4 +54,4 @@ fi
 crond
 
 ### start apache2 ###
-bash -c 'exec /usr/sbin/httpd -DFOREGROUND'
+bash -c 'exec /usr/sbin/httpd -DFOREGROUND' && curl -sX PUT $API_ADDR/branch/$(curl -s $API_ADDR/branch/$ORG/$REPO/$BRANCH)/state/0
