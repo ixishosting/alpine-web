@@ -4,6 +4,7 @@ FROM gliderlabs/alpine:latest
 RUN apk --update add curl bash php7 php7-fpm nginx supervisor --repository http://nl.alpinelinux.org/alpine/edge/testing/
 
 # Configure nginx
+RUN mkdir /run/nginx
 COPY config/nginx.conf /etc/nginx/nginx.conf
 
 # Configure PHP-FPM
@@ -35,6 +36,7 @@ EXPOSE 80
 
 # Add application
 RUN mkdir -p /var/www/html
+
 WORKDIR /var/www/html
 
 EXPOSE 80 443
