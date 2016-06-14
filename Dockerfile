@@ -37,7 +37,7 @@ EXPOSE 80
 # Add application
 RUN mkdir -p /var/www/html
 
-WORKDIR /var/www/html
+WORKDIR /
 
 EXPOSE 80 443
 
