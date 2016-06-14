@@ -39,7 +39,7 @@ echo "DEBUG:: DOWNLOADING WEB BUILD"
 
 ### grab latest code for the project and setup ###
 wget -O /tmp/webapp.tar.gz https://s3-$AWS_REGION.amazonaws.com/$S3_URL
-tar -xvzf /tmp/webapp.tar.gz /
+tar -xvzf /tmp/webapp.tar.gz
 #rm /tmp/webapp.tar.gz
 chown -Rf nginx:nginx /webapp
 
