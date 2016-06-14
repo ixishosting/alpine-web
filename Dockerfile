@@ -12,9 +12,9 @@ COPY config/fpm-pool.conf /etc/php7/php-fpm.d/zzz_custom.conf
 COPY config/php.ini /etc/php7/conf.d/zzz_custom.ini
 
 ### install composer and drush ###
-#RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
-#    wget -O /usr/local/bin/drush http://files.drush.org/drush.phar && \
-#    chmod +x /usr/local/bin/drush
+RUN curl -sS https://getcomposer.org/installer | php7 -- --install-dir=/usr/local/bin --filename=composer && \
+    wget -O /usr/local/bin/drush http://files.drush.org/drush.phar && \
+    chmod +x /usr/local/bin/drush
 
 ### install mysql-client ###
 RUN apk-install --no-cache mysql-client
