@@ -41,14 +41,14 @@ echo "DEBUG:: DOWNLOADING WEB BUILD"
 wget -O /tmp/webapp.tar.gz https://s3-$AWS_REGION.amazonaws.com/$S3_URL
 tar -xzf /tmp/webapp.tar.gz
 rm /tmp/webapp.tar.gz
-chown -Rf apache:apache /webapp
+chown -Rf nginx:nginx /webapp
 
 echo "DEBUG:: CREATING ASSETS SYMLINK"
 
 ### create symlink for assets ###
 ln -s /assets /webapp/sites/default/files
-chown -Rf apache:apache /assets
-chown -Rf apache:apache /webapp/sites/default/files
+chown -Rf nginx:nginx /assets
+chown -Rf nginx:nginx /webapp/sites/default/files
 
 echo "DEBUG:: CHECKING IF ANIBLE PLAYBOOK EXISTS"
 
