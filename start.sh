@@ -79,4 +79,5 @@ curl -sX PUT $API_ADDR/branch/$(curl -s $API_ADDR/branch/$ORG/$REPO/$BRANCH)/sta
 echo "DEBUG:: STARTING APACHE"
 
 ### start apache2 ###
-bash -c 'exec /usr/sbin/httpd -DFOREGROUND'
+#bash -c 'exec /usr/sbin/httpd -DFOREGROUND'
+supervisord -c /etc/supervisor/conf.d/supervisord.conf

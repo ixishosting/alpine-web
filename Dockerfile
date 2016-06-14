@@ -1,16 +1,14 @@
-FROM gliderlabs/alpine:3.3
+FROM gliderlabs/alpine:latest
 
-### install base components ###
-RUN apk-install --no-cache curl bash
+# Install packages
+RUN apk --update add curl bash php7-fpm nginx supervisor --repository http://nl.alpinelinux.org/alpine/edge/testing/
 
-### install apache2, php5 and mysql-client ###
-RUN  apk-install --no-cache apache2 php-apache2 php-cli php-json php-phar php-openssl php-ctype php-pdo_mysql php-gd php-xml php-pdo php-dom php-mysql php-opcache
+# Configure nginx
+COPY config/nginx.conf /etc/nginx/nginx.conf
 
-### create directories needed for apache ###
-RUN mkdir -p /run/apache2
-
-### add apache2 config file ###
-ADD httpd.conf /etc/apache2/httpd.conf
+# Configure PHP-FPM
+COPY config/fpm-pool.conf /etc/php7/php-fpm.d/zzz_custom.conf
+COPY config/php.ini /etc/php7/conf.d/zzz_custom.ini
 
 ### install composer and drush ###
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
@@ -23,6 +21,9 @@ RUN apk-install --no-cache mysql-client
 ### install ansible ###
 RUN apk add --no-cache ansible --repository http://dl-3.alpinelinux.org/alpine/edge/main/ --allow-untrusted
 
+# Configure supervisord
+COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
 ### add start script ###
 COPY start.sh /start.sh
 
@@ -31,6 +32,13 @@ COPY playbook.yml /playbook.yml
 
 ### expore port 80 ###
 EXPOSE 80
+
+# Add application
+RUN mkdir -p /var/www/html
+WORKDIR /var/www/html
+COPY src/ /var/www/html/
+
+EXPOSE 80 443
 
 ### execute on start ###
 CMD ["/bin/bash", "/start.sh"]
