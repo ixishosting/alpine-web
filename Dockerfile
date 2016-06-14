@@ -1,7 +1,7 @@
 FROM gliderlabs/alpine:latest
 
 # Install packages
-RUN apk --update add curl bash php7 php7-fpm nginx supervisor --repository http://nl.alpinelinux.org/alpine/edge/testing/
+RUN apk --update add curl bash php7 php7-fpm php7-phar php7-opcache php7-mcrypt php7-gd php7-mysqlnd php7-openssl nginx supervisor --repository http://nl.alpinelinux.org/alpine/edge/testing/
 
 # Configure nginx
 RUN mkdir /run/nginx
