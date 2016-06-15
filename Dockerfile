@@ -2,10 +2,10 @@ FROM gliderlabs/alpine:3.4
 
 # Install packages
 RUN apk add --no-cache ansible mysql-client nginx bash curl supervisor ca-certificates openssl && \
-  apk add --no-cache php5 php5-fpm php5-pdo_mysql php5-json -php5-opcache php5-mcrypt php5-gd php5-openssl && \
+  apk add --no-cache php5 php5-fpm php5-pdo_mysql php5-json -php5-opcache php5-mcrypt php5-gd php5-openssl
 
 ### install composer and drush ###
-RUN curl -sS https://getcomposer.org/installer | php7 -- --install-dir=/usr/local/bin --filename=composer && \
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
     wget -O /usr/local/bin/drush http://files.drush.org/drush.phar && \
     chmod +x /usr/local/bin/drush
 
