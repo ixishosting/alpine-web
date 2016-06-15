@@ -74,7 +74,7 @@ crond
 echo "DEBUG:: CLEARNING LOCK"
 
 ### release locks ###
-curl -sX PUT $API_ADDR/branch/$(curl -s $API_ADDR/branch/$ORG/$REPO/$BRANCH)/state/0
+#curl -sX PUT $API_ADDR/branch/$(curl -s $API_ADDR/branch/$ORG/$REPO/$BRANCH)/state/0
 
 echo "DEBUG:: STARTING APACHE"
 
