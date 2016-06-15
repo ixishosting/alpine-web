@@ -69,7 +69,7 @@ fi
 echo "DEBUG:: STARTING CRON"
 
 ### start crond daemon ###
-crond
+crond -b
 
 echo "DEBUG:: CLEARNING LOCK"
 
