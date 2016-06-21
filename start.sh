@@ -4,7 +4,20 @@
 # script executed when container starts.  Performs configuration and setup of project.
 ###
 
-echo "DEBUG:: CHECKING IF BRANCH IS NEW"
+### get current and parent root passwords ###
+export PARENT_MYSQL_ROOT_PASSWORD=$(curl -sX GET --header "token:$API_TOKEN" $API_ADDR/secrets/$BRANCH/$REPO/$ORG | jq '.db_pw_root_parent' | sed 's/\"//g')
+export MYSQL_ROOT_PASSWORD=$(curl -sX GET --header "token:$API_TOKEN" $API_ADDR/secrets/$BRANCH/$REPO/$ORG | jq '.db_pw_root' | sed 's/\"//g')
+
+### test mysql connection ###
+mysql -u $MYSQL_USER -p$MYSQL_PASSWORD -h $MYSQL_HOST  --connect-timeout=5 -e 'show databases;'
+MYSQL_SUCCESS=$?
+
+### if mysql connection failure ###
+if [ $MYSQL_SUCCESS -ne 0 ]; then
+  ### reset root and user passwords ###
+  mysql -u root -p$PARENT_MYSQL_ROOT_PASSWORD -h $MYSQL_HOST -e "ALTER USER 'root'@'%' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD';"
+  mysql -u root -p$MYSQL_ROOT_PASSWORD -h $MYSQL_HOST -e "ALTER USER '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';"
+fi
 
 ### amend mysql passwords if branch != master and this is a new commit/branch ###
 #if [ "$BRANCH" != "master" ] && [ "$IS_NEW" == "true" ];
