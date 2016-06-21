@@ -7,27 +7,27 @@
 echo "DEBUG:: CHECKING IF BRANCH IS NEW"
 
 ### amend mysql passwords if branch != master and this is a new commit/branch ###
-if [ "$BRANCH" != "master" ] && [ "$IS_NEW" == "true" ];
-then
-
-  echo "DEBUG:: BRANCH IS MASTER AND IS NEW, SETTING PASSWORD"
-
-  ### sleep to allow mysql to fully start ###
-  sleep 5
-
-  echo "old password is $DB_ROOT_PARENT_PW"
-
-  echo "DEBUG:: SETTING ROOT PASSWORD"
-
-  ### reset root mysql password
-  mysql -u root -p$DB_ROOT_PARENT_PW -h $MYSQL_HOST -e "ALTER USER 'root'@'%' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD';"
-
-  echo "DEBUG:: SETTING USER PASSOWRD"
-
-  ### reset mysql password ###
-  mysql -u root -p$MYSQL_ROOT_PASSWORD -h $MYSQL_HOST -e "ALTER USER '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';"
-
-fi
+#if [ "$BRANCH" != "master" ] && [ "$IS_NEW" == "true" ];
+#then
+#
+#  echo "DEBUG:: BRANCH IS MASTER AND IS NEW, SETTING PASSWORD"
+#
+#  ### sleep to allow mysql to fully start ###
+#  sleep 5
+#
+#  echo "old password is $DB_ROOT_PARENT_PW"
+#
+#  echo "DEBUG:: SETTING ROOT PASSWORD"
+#
+#  ### reset root mysql password
+#  mysql -u root -p$DB_ROOT_PARENT_PW -h $MYSQL_HOST -e "ALTER USER 'root'@'%' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD';"
+#
+#  echo "DEBUG:: SETTING USER PASSOWRD"
+#
+#  ### reset mysql password ###
+#  mysql -u root -p$MYSQL_ROOT_PASSWORD -h $MYSQL_HOST -e "ALTER USER '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';"
+#
+#fi
 
 ### blank out parent mysql password ###
 export PARENT_MYSQL_PASSWORD="****"
