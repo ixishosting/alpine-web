@@ -15,37 +15,18 @@ MYSQL_SUCCESS=$?
 
 ### if mysql connection failure ###
 if [ $MYSQL_SUCCESS -ne 0 ]; then
+
   echo "DEBUG :: MYSQL CONNECTION FAILURE"
   ### reset root and user passwords ###
   mysql -u root -p$PARENT_MYSQL_ROOT_PASSWORD -h $MYSQL_HOST -e "ALTER USER 'root'@'%' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD';"
   mysql -u root -p$MYSQL_ROOT_PASSWORD -h $MYSQL_HOST -e "ALTER USER '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';"
   echo "DEBUG :: MYSQL CONNECTION DETAILS UPDATED"
-else
-  echo "DEBUG :: MYSQL CONNECTIO SUCCESS"
-fi
 
-### amend mysql passwords if branch != master and this is a new commit/branch ###
-#if [ "$BRANCH" != "master" ] && [ "$IS_NEW" == "true" ];
-#then
-#
-#  echo "DEBUG:: BRANCH IS MASTER AND IS NEW, SETTING PASSWORD"
-#
-#  ### sleep to allow mysql to fully start ###
-#  sleep 5
-#
-#  echo "old password is $DB_ROOT_PARENT_PW"
-#
-#  echo "DEBUG:: SETTING ROOT PASSWORD"
-#
-#  ### reset root mysql password
-#  mysql -u root -p$DB_ROOT_PARENT_PW -h $MYSQL_HOST -e "ALTER USER 'root'@'%' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD';"
-#
-#  echo "DEBUG:: SETTING USER PASSOWRD"
-#
-#  ### reset mysql password ###
-#  mysql -u root -p$MYSQL_ROOT_PASSWORD -h $MYSQL_HOST -e "ALTER USER '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';"
-#
-#fi
+else
+
+  echo "DEBUG :: MYSQL CONNECTIO SUCCESS"
+
+fi
 
 ### blank out parent mysql password ###
 export PARENT_MYSQL_PASSWORD="****"
