@@ -24,7 +24,7 @@ if [ $MYSQL_SUCCESS -ne 0 ]; then
 
 else
 
-  echo "DEBUG :: MYSQL CONNECTIO SUCCESS"
+  echo "DEBUG :: MYSQL CONNECTION SUCCESS - NOWT TO DO"
 
 fi
 

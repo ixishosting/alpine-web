@@ -19,9 +19,9 @@
     with_dict: "{{ cron_jobs }}"
     when: cron_jobs is defined
 
-  ### execute post-dpeloyment commands ###
+  ### execute post-deployment commands ###
   - name: execute deployment commands
-    shell: "{{ item.value.command }}"
+    shell: "{{ item.value.command }} >> /var/log/commands.log"
     args:
       executable: /bin/bash
       chdir: "{{ item.value.directory }}"
