@@ -4,7 +4,7 @@
 
   tasks:
 
-  - include_vars: /webapp/.container.yml
+  - include_vars: /docroot/.container.yml
 
   ### setup cron jobs ###
   - name: setup cron jobs
