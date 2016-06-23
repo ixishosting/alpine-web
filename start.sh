@@ -45,7 +45,9 @@ chown -Rf apache:apache /docroot
 echo "DEBUG:: CREATING ASSETS SYMLINK"
 
 ### create symlink for assets ###
-ln -s /assets /docroot/sites/default/files
+if [ ! -d "/docroot/sites/default/files" ]; then
+  ln -s /assets /docroot/sites/default/files
+fi
 chown -Rf apache:apache /assets
 chown -Rf apache:apache /docroot/sites/default/files
 
