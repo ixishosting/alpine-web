@@ -48,6 +48,8 @@ echo "DEBUG:: CREATING ASSETS SYMLINK"
 if [ ! -d "/docroot/sites/default/files" ]; then
   ln -s /assets /docroot/sites/default/files
 fi
+
+### set permissions on files ###
 chown -Rf apache:apache /assets
 chown -Rf apache:apache /docroot/sites/default/files
 
