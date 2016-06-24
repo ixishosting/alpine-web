@@ -37,26 +37,26 @@ export MYSQL_ROOT_PASSWORD="****"
 echo "DEBUG:: DOWNLOADING WEB BUILD"
 
 ### grab latest code for the project and setup ###
-wget -O /tmp/docroot.tar.gz https://s3-$AWS_REGION.amazonaws.com/$S3_URL
-tar -xzf /tmp/docroot.tar.gz
-rm /tmp/docroot.tar.gz
-chown -Rf apache:apache /docroot
+wget -O /tmp/build.tar.gz https://s3-$AWS_REGION.amazonaws.com/$S3_URL
+tar -xzf /tmp/build.tar.gz
+rm /tmp/build.tar.gz
+chown -Rf apache:apache /build
 
 echo "DEBUG:: CREATING ASSETS SYMLINK"
 
 ### create symlink for assets ###
-if [ ! -d "/docroot/sites/default/files" ]; then
-  ln -s /assets /docroot/sites/default/files
+if [ ! -d "/build/sites/default/files" ]; then
+  ln -s /assets /build/sites/default/files
 fi
 
 ### set permissions on files ###
 chown -Rf apache:apache /assets
-chown -Rf apache:apache /docroot/sites/default/files
+chown -Rf apache:apache /build/sites/default/files
 
 echo "DEBUG:: CHECKING IF ANIBLE PLAYBOOK EXISTS"
 
 ### check if container config file exists ###
-if [ -f "/docroot/.container.yml" ];
+if [ -f "/build/.container.yml" ];
 then
 
 echo "DEBUG:: EXECUTING PLAYBOOK"
@@ -65,7 +65,7 @@ echo "DEBUG:: EXECUTING PLAYBOOK"
   ansible-playbook /playbook.yml  --connection=localhost
 
   ### remove ansible playbook when complete ###
-  rm /docroot/.container.yml
+  rm /build/.container.yml
 
 fi
 
