@@ -45,8 +45,8 @@ chown -Rf apache:apache /build
 echo "DEBUG:: CREATING ASSETS SYMLINK"
 
 ### create symlink for assets ###
-if [ ! -d "/build/sites/default/files" ]; then
-  ln -s /assets /build/sites/default/files
+if [ ! -d "/public/sites/default/files" ]; then
+  ln -s /assets /public/sites/default/files
 fi
 
 ### set permissions on files ###
