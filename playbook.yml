@@ -4,11 +4,6 @@
 
   tasks:
 
-  - name: include inventory file
-    include_vars: /.container.yml
-
-  ### perform
-
   - name: download project build
     get_url:
       url=https://s3-{{ lookup('env','AWS_REGION') }}.amazonaws.com/{{ lookup('env','S3_URL') }}
@@ -34,6 +29,9 @@
       owner=apache
       group=apache
       state=link
+
+  - name: include inventory file
+    include_vars: /.container.yml
 
   - name: setup cron jobs
     cron:
