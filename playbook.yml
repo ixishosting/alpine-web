@@ -4,9 +4,38 @@
 
   tasks:
 
-  - include_vars: /docroot/.container.yml
+  - name: include inventory file
+    include_vars: /docroot/.container.yml
 
-  ### setup cron jobs ###
+  ### perform
+
+  - name: download project build
+    get_url:
+      url=https://s3-{{ lookup('env','AWS_REGION') }}.amazonaws.com/{{ lookup('env','S3_URL') }}
+      dest=/tmp/build.tar.gz
+
+  - name: extract project build
+    unarchive:
+      src=/tmp/build.tar.gz
+      dest=/
+      copy=no
+      owner=apache
+      group=apache
+
+  - name: remove project build archive
+    file:
+      path=/tmp/build.tar.gz
+      state=absent
+
+  - name: symlink file directory
+    file:
+      src=/assets
+      dest=/public/sites/default/files
+      owner=apache
+      group=apache
+      recurse=yes
+      state=link
+
   - name: setup cron jobs
     cron:
       name={{ item.key }}
@@ -19,7 +48,6 @@
     with_dict: "{{ cron_jobs }}"
     when: cron_jobs is defined
 
-  ### execute post-deployment commands ###
   - name: execute deployment commands
     shell: "{{ item.value.command }} >> /var/log/commands.log"
     args:

@@ -28,46 +28,18 @@ else
 
 fi
 
-### blank out parent mysql password ###
-export PARENT_MYSQL_PASSWORD="****"
-
-### blank out parent mysql password ###
-export MYSQL_ROOT_PASSWORD="****"
-
 echo "DEBUG:: DOWNLOADING WEB BUILD"
 
 ### grab latest code for the project and setup ###
 wget -O /tmp/build.tar.gz https://s3-$AWS_REGION.amazonaws.com/$S3_URL
 tar -xzf /tmp/build.tar.gz
 rm /tmp/build.tar.gz
-chown -Rf apache:apache /build
+chown -Rf apache:apache /public
 
-echo "DEBUG:: CREATING ASSETS SYMLINK"
+echo "DEBUG:: RUNNING ANSIBLE"
 
-### create symlink for assets ###
-if [ ! -d "/public/sites/default/files" ]; then
-  ln -s /assets /public/sites/default/files
-fi
-
-### set permissions on files ###
-chown -Rf apache:apache /assets
-chown -Rf apache:apache /build/sites/default/files
-
-echo "DEBUG:: CHECKING IF ANIBLE PLAYBOOK EXISTS"
-
-### check if container config file exists ###
-if [ -f "/build/.container.yml" ];
-then
-
-echo "DEBUG:: EXECUTING PLAYBOOK"
-
-  ### run ansible playbook ###
-  ansible-playbook /playbook.yml  --connection=localhost
-
-  ### remove ansible playbook when complete ###
-  rm /build/.container.yml
-
-fi
+### run ansible playbook ###
+ansible-playbook /playbook.yml  --connection=localhost
 
 echo "DEBUG:: STARTING CRON"
 
