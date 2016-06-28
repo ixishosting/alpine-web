@@ -30,6 +30,14 @@
       group=apache
       state=link
 
+  - name: set permissions on /assets
+    file:
+      path=/assets
+      owner=apache
+      group=apache
+      recurse=true
+      state=directory
+
   - name: include inventory file
     include_vars: /.container.yml
 
