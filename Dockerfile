@@ -4,7 +4,7 @@ FROM gliderlabs/alpine:3.4
 RUN apk-install --no-cache curl bash jq
 
 ### install apache2, php5 and mysql-client ###
-RUN  apk-install --no-cache apache2 php-apache2 php-cli php-json php-phar php-openssl php-ctype php-pdo_mysql php-gd php-xml php-pdo php-dom php-mysql php-opcache
+RUN  apk-install --no-cache apache2 php5-apache2 php5-cli php5-json php5-phar php5-openssl php5-ctype php5-pdo_mysql php5-gd php5-xml php5-pdo php5-dom php5-mysql php5-opcache
 
 ### create directories needed for apache ###
 RUN mkdir -p /run/apache2
