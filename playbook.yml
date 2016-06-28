@@ -5,7 +5,7 @@
   tasks:
 
   - name: include inventory file
-    include_vars: /docroot/.container.yml
+    include_vars: /.container.yml
 
   ### perform
 
