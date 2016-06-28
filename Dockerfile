@@ -21,7 +21,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN apk-install --no-cache mysql-client
 
 ### install ansible ###
-RUN apk add --no-cache ansible --repository http://dl-3.alpinelinux.org/alpine/edge/main/ --allow-untrusted
+RUN apk add --no-cache ansible
 
 ### add start script ###
 COPY start.sh /start.sh
