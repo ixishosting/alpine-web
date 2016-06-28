@@ -28,6 +28,14 @@ else
 
 fi
 
+echo "DEBUG:: DOWNLOADING WEB BUILD"
+
+### grab latest code for the project and setup ###
+wget -O /tmp/build.tar.gz https://s3-$AWS_REGION.amazonaws.com/$S3_URL
+tar -xzf /tmp/build.tar.gz
+rm /tmp/build.tar.gz
+chown -Rf apache:apache /public
+
 echo "DEBUG:: RUNNING ANSIBLE"
 
 ### run ansible playbook ###
