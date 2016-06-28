@@ -33,7 +33,6 @@
       dest=/public/sites/default/files
       owner=apache
       group=apache
-      recurse=yes
       state=link
 
   - name: setup cron jobs
