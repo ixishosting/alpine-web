@@ -1,4 +1,4 @@
-FROM gliderlabs/alpine:3.3
+FROM gliderlabs/alpine:3.4
 
 ### install base components ###
 RUN apk-install --no-cache curl bash jq
