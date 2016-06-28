@@ -12,7 +12,7 @@
   - name: extract project build
     unarchive:
       src=/tmp/build.tar.gz
-      dest=/
+      dest=/tmp
       copy=no
       owner=apache
       group=apache
