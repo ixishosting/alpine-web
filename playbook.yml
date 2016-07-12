@@ -37,6 +37,13 @@
       group=apache
       recurse=true
       state=directory
+  - name: set permissions on /private
+    file:
+      path=/private
+      owner=apache
+      group=apache
+      recurse=true
+      state=directory
 
   - name: include inventory file
     include_vars: /.container.yml
