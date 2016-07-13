@@ -58,6 +58,18 @@
   
   - name: create postfix hashmap database
     shell: postmap hash:/etc/postfix/sasl_passwd
+
+  - name: remove sasl_passwd file
+    file:
+      path=/etc/postfix/sasl_passwd
+      state=absent
+  
+  - name: set permission on postix db file
+    file:
+      path=/etc/postfix/sasl_passwd.db
+      owner=root
+      group=root
+      mode=0600
   
   - name: configure postfix cert directories
     shell: postconf -e 'smtp_tls_CAfile = /etc/ssl/certs/ca-certificates.crt'
