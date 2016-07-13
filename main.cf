@@ -116,7 +116,7 @@ mail_owner = postfix
 #
 #myorigin = $myhostname
 #myorigin = $mydomain
-myorigin = {{ origin_domain }}
+myorigin = {{ lookup('env','ORIGIN_DOMAIN') }}
 
 # RECEIVING MAIL
 
