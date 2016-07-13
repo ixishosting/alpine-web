@@ -33,7 +33,7 @@ COPY playbook.yml /playbook.yml
 RUN apk-install postfix ca-certificates
 
 ### copy postfix config templates ###
-COPY main.cf /tmp/main.cd
+COPY main.cf /tmp/main.cf
 COPY sasl_passwd /tmp/sasl_passwd
 
 ### expore port 80 ###
