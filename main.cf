@@ -678,7 +678,7 @@ inet_protocols = ipv4
 meta_directory = /etc/postfix
 shlib_directory = /usr/lib/postfix
 
-relayhost = [email-smtp.{{ env["AWS_REGION"] }}.amazonaws.com]:25
+relayhost = [email-smtp.{{ lookup('env','AWS_REGION') }}.amazonaws.com]:25
 smtp_sasl_auth_enable = yes
 smtp_sasl_security_options = noanonymous
 smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd
