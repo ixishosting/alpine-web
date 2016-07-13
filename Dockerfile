@@ -18,16 +18,23 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
     chmod +x /usr/local/bin/drush
 
 ### install mysql-client ###
-RUN apk-install --no-cache mysql-client
+RUN apk-install mysql-client
 
 ### install ansible ###
-RUN apk add --no-cache ansible
+RUN apk-install ansible
 
 ### add start script ###
 COPY start.sh /start.sh
 
 ### add ansible configuration playbook ###
 COPY playbook.yml /playbook.yml
+
+### install postfix and dependencies ###
+RUN apk-install postfix ca-certificates
+
+### copy postfix config templates ###
+COPY main.cf /tmp/main.cd
+COPY sasl_passwd /tmp/sasl_passwd
 
 ### expore port 80 ###
 EXPOSE 80

@@ -1,0 +1,1 @@
+[email-smtp.{{ env["AWS_REGION"] }}.amazonaws.com]:25 {{ env["SMTP_USER"] }}:{{ env["SMTP_PASSWORD"] }}

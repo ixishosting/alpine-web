@@ -48,6 +48,23 @@
   - name: include inventory file
     include_vars: /.container.yml
 
+  - name: configure postfix
+    template:
+      src=/tmp/{{ item }}
+      dest=/etc/postfix/{{ item }}
+    with_items:
+      - main.cf
+      - sasl_passwd
+  
+  - name: create postfix hashmap database
+    shell: postmap hash:/etc/postfix/sasl_passwd
+  
+  - name: configure postfix cert directories
+    shell: postconf -e 'smtp_tls_CAfile = /etc/ssl/certs/ca-certificates.crt'
+  
+  - name: start postfix
+    shell: postfix start
+
   - name: setup cron jobs
     cron:
       name={{ item.key }}
