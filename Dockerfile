@@ -40,7 +40,7 @@ COPY sasl_passwd /tmp/sasl_passwd
 RUN apk-install openssh
 
 ### copy opensshd config file ###
-COPY sshd_config /etc/openssh/sshd_config
+COPY sshd_config /etc/ssh/sshd_config
 
 ### reate web user ###
 RUN adduser web -s /bin/bash -D
