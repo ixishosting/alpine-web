@@ -36,8 +36,17 @@ RUN apk-install postfix ca-certificates
 COPY main.cf /tmp/main.cf
 COPY sasl_passwd /tmp/sasl_passwd
 
+### install openssh ###
+RUN apk-install openssh
+
+### copy opensshd config file ###
+COPY sshd_config /etc/openssh/sshd_config
+
+### reate web user ###
+RUN adduser web -s /bin/bash -D
+
 ### expore port 80 ###
-EXPOSE 80
+EXPOSE 80 2222
 
 ### execute on start ###
 CMD ["/bin/bash", "/start.sh"]

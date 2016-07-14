@@ -76,6 +76,12 @@
   
   - name: start postfix
     shell: postfix start
+  
+  - name: setup ssh system keys
+    shell: ssh-keygen -A
+  
+  - name: start ssh server
+    shell: /usr/sbin/sshd
 
   - name: setup cron jobs
     cron:
