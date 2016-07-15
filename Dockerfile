@@ -54,6 +54,9 @@ RUN pip install passlib
 ### install shadow package for usermod ###
 RUN apk-install shadow --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ --allow-untrusted
 
+### remove su binary ###
+RUN rm /bin/su
+
 ### expore port 80 ###
 EXPOSE 80 2222
 
