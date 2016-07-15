@@ -51,6 +51,9 @@ RUN apk-install py-pip
 ### install passlib for ansible user module ###
 RUN pip install passlib
 
+### install shadow package for usermod ###
+RUN apk-install shadow --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ --allow-untrusted
+
 ### expore port 80 ###
 EXPOSE 80 2222
 
