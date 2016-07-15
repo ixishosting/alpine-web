@@ -43,7 +43,7 @@ echo "DEBUG:: CLEARNING LOCK"
 ### release locks ###
 curl -sX PUT --header "token:$API_TOKEN" $API_ADDR/branch/$(curl -s $API_ADDR/branch/$ORG/$REPO/$BRANCH)/state/0
 
-#echo "DEBUG:: STARTING APACHE"
+echo "DEBUG:: STARTING APACHE"
 
 ### start apache2 ###
-#bash -c 'exec /usr/sbin/httpd -DFOREGROUND'
+bash -c 'exec /usr/sbin/httpd -DFOREGROUND'

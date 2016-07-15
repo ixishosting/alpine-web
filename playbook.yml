@@ -47,9 +47,6 @@
       recurse=true
       mode=2770
       state=directory
-  
-  - name: start apache
-    shell: /usr/sbin/httpd
 
   - name: include inventory file
     include_vars: /.container.yml
