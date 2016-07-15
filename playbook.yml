@@ -83,10 +83,10 @@
   - name: start ssh server
     shell: /usr/sbin/sshd
 
-  - name: set web user password
-    user:
-      name=web
-      password="{{ lookup('password', '/password.txt encrypt=md5_crypt') }}"
+  #- name: set web user password
+  #  user:
+  #    name=web
+  #    password="{{ lookup('password', '/password.txt encrypt=md5_crypt') }}"
 
   - name: setup cron jobs
     cron:
