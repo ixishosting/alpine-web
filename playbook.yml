@@ -36,7 +36,7 @@
       owner=web
       group=apache
       recurse=true
-      mode=0660
+      mode=2770
       state=directory
 
   - name: set permissions on /private
@@ -45,7 +45,7 @@
       owner=web
       group=apache
       recurse=true
-      mode=0660
+      mode=2770
       state=directory
 
   - name: include inventory file
