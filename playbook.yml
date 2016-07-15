@@ -88,6 +88,10 @@
       name=web
       password="{{ lookup('password', '/password.txt encrypt=md5_crypt') }}"
 
+  - name: setup sshpiper key
+    authorized_key:
+      user=charlie key="{{ lookup('file', '/sshpiper-id_rsa.pub') }}"
+
   - name: setup cron jobs
     cron:
       name={{ item.key }}
