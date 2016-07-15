@@ -1,7 +1,7 @@
 FROM gliderlabs/alpine:3.4
 
 ### install base components ###
-RUN apk-install --no-cache curl bash jq tar
+RUN apk-install --no-cache curl bash jq tar rsync
 
 ### install apache2, php5 and mysql-client ###
 RUN  apk-install --no-cache apache2 php5-apache2 php5-cli php5-json php5-phar php5-openssl php5-ctype php5-pdo_mysql php5-gd php5-xml php5-pdo php5-dom php5-mysql php5-opcache

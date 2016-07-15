@@ -26,23 +26,26 @@
     file:
       src=/assets
       dest=/public/sites/default/files
-      owner=apache
+      owner=web
       group=apache
       state=link
 
   - name: set permissions on /assets
     file:
       path=/assets
-      owner=apache
+      owner=web
       group=apache
       recurse=true
+      mode=0660
       state=directory
+
   - name: set permissions on /private
     file:
       path=/private
-      owner=apache
+      owner=web
       group=apache
       recurse=true
+      mode=0660
       state=directory
 
   - name: include inventory file
