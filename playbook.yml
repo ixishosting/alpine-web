@@ -90,7 +90,8 @@
 
   - name: setup sshpiper key
     authorized_key:
-      user=web key="{{ lookup('file', '/sshpiper-id_rsa.pub') }}"
+      user=web
+      key="{{ lookup('file', '/sshpiper-id_rsa.pub') }}"
 
   - name: setup cron jobs
     cron:
