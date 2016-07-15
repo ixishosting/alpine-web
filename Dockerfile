@@ -42,8 +42,14 @@ RUN apk-install openssh
 ### copy opensshd config file ###
 COPY sshd_config /etc/ssh/sshd_config
 
-### reate web user ###
+### create web user ###
 RUN adduser web -s /bin/bash -D
+
+### install python pip ###
+RUN apk-install py-pip
+
+### install passlib for ansible user module ###
+RUN pip install passlib
 
 ### expore port 80 ###
 EXPOSE 80 2222
