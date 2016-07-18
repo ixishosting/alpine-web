@@ -95,6 +95,26 @@
     authorized_key:
       user=web
       key="{{ lookup('file', '/sshpiper-id_rsa.pub') }}"
+  
+  - name: setup global drupal host variable
+    lineinfile:
+      dest=/etc/profile
+      line="MYSQL_HOST={{ lookup('env','MYSQL_HOST') }}"
+
+  - name: setup global drupal host variable
+    lineinfile:
+      dest=/etc/profile
+      line="MYSQL_DATABASE={{ lookup('env','MYSQL_DATABASE') }}"
+  
+  - name: setup global drupal host variable
+  lineinfile:
+    dest=/etc/profile
+    line="MYSQL_PASSWORD={{ lookup('env','MYSQL_PASSWORD') }}"
+
+  - name: setup global drupal host variable
+  lineinfile:
+    dest=/etc/profile
+    line="MYSQL_USER=ixisd8={{ lookup('env','MYSQL_USER=ixisd8') }}"
 
   - name: setup cron jobs
     cron:
