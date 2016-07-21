@@ -8,6 +8,9 @@
 export PARENT_MYSQL_ROOT_PASSWORD=$(curl -sX GET --header "token:$API_TOKEN" $API_ADDR/secrets/$BRANCH/$REPO/$ORG | jq '.db_pw_root_parent' | sed 's/\"//g')
 export MYSQL_ROOT_PASSWORD=$(curl -sX GET --header "token:$API_TOKEN" $API_ADDR/secrets/$BRANCH/$REPO/$ORG | jq '.db_pw_root' | sed 's/\"//g')
 
+echo $PARENT_MYSQL_ROOT_PASSWORD
+echo $MYSQL_ROOT_PASSWORD
+
 ### test mysql connection ###
 echo "DEBUG :: TESTING MYSQL CONNECTION"
 mysql -u $MYSQL_USER -p$MYSQL_PASSWORD -h $MYSQL_HOST  --connect-timeout=5 -e 'show databases;'
