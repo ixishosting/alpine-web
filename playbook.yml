@@ -114,7 +114,7 @@
   - name: setup global drupal user variable
     lineinfile:
       dest=/etc/profile
-      line="export MYSQL_USER=ixisd8{{ lookup('env','MYSQL_USER=ixisd8') }}"
+      line="export MYSQL_USER={{ lookup('env','MYSQL_USER') }}"
 
   - name: setup cron jobs
     cron:
