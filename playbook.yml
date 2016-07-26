@@ -127,7 +127,7 @@
       day={{ item.value.day }}
       month={{ item.value.month }}
       weekday={{ item.value.weekday }}
-      job={{ item.value.command }}
+      job="{{ item.value.command }} > /dev/null 2>&1"
     with_dict: "{{ cron_jobs }}"
     when: cron_jobs is defined
 
