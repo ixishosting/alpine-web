@@ -132,9 +132,9 @@
     when: cron_jobs is defined
 
   - name: execute deployment commands
-    shell: "{{ item.value.command }} >> /var/log/commands.log"
+    shell: "{{ item.command }} >> /var/log/commands.log"
     args:
       executable: /bin/bash
-      chdir: "{{ item.value.directory }}"
-    with_dict: "{{ deployment_commands }}"
+      chdir: "{{ item.directory }}"
+    with_items: "{{ deployment_commands }}"
     when: deployment_commands is defined
