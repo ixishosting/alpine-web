@@ -29,6 +29,9 @@ COPY start.sh /start.sh
 ### add ansible configuration playbook ###
 COPY playbook.yml /playbook.yml
 
+### add ansible configuration file ###
+COPY ansible.cfg /etc/ansible/ansible.cfg
+
 ### install postfix and dependencies ###
 RUN apk-install postfix ca-certificates
 
