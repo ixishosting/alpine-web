@@ -22,6 +22,9 @@
       path=/tmp/build.tar.gz
       state=absent
 
+  - name: start apache
+    shell: /usr/sbin/httpd
+
   - name: symlink file directory
     file:
       src=/assets
