@@ -102,22 +102,22 @@
   - name: setup global drupal host variable
     lineinfile:
       dest=/etc/profile
-      line="MYSQL_HOST={{ lookup('env','MYSQL_HOST') }}"
+      line="export MYSQL_HOST={{ lookup('env','MYSQL_HOST') }}"
 
   - name: setup global drupal database variable
     lineinfile:
-      dest=/home/web/.ssh/environment
-      line="YSQL_DATABASE={{ lookup('env','MYSQL_DATABASE') }}"
+      dest=/etc/profile
+      line="export MYSQL_DATABASE={{ lookup('env','MYSQL_DATABASE') }}"
   
   - name: setup global drupal password variable
     lineinfile:
       dest=/etc/profile
-      line="MYSQL_PASSWORD={{ lookup('env','MYSQL_PASSWORD') }}"
+      line="export MYSQL_PASSWORD={{ lookup('env','MYSQL_PASSWORD') }}"
 
   - name: setup global drupal user variable
     lineinfile:
       dest=/etc/profile
-      line="MYSQL_USER={{ lookup('env','MYSQL_USER') }}"
+      line="export MYSQL_USER={{ lookup('env','MYSQL_USER') }}"
 
   - name: setup cron jobs
     cron:
